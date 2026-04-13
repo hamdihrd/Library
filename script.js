@@ -61,5 +61,32 @@ function addHandler(e) {
   form0.classList.toggle("hidden");
 }
 const btnAddBook = document.querySelector("#addBook");
+const btnSubmit = document.querySelector("#submit");
+const container = document.querySelector("#bookContainer");
+
+container.addEventListener("click", (e) => {
+  if (e.target.classList.contains("read")) {
+    const bookId = e.target.parentElement.parentElement.dataset.id;
+    const book = myLibrary.find((book) => book.id === bookId);
+    book.read = !book.read;
+    displayBooks();
+  } else if (e.target.classList.contains("remove")) {
+    const bookId = e.target.parentElement.parentElement.dataset.id;
+    const bookIndex = myLibrary.findIndex((book) => book.id === bookId);
+    myLibrary.splice(bookIndex, 1);
+    displayBooks();
+  }
+});
+
+btnSubmit.addEventListener("click", (e) => {
+  e.preventDefault();
+  const title = document.querySelector("#title").value;
+  const author = document.querySelector("#author").value;
+  const pages = document.querySelector("#pages").value;
+  const read = document.querySelector("#read").checked;
+  addBookToLibrary(title, author, pages, read);
+  displayBooks();
+  form0.classList.toggle("hidden");
+});
 const form0 = document.querySelector("#form");
 btnAddBook.addEventListener("click", addHandler);
