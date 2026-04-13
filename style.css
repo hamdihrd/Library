@@ -1,0 +1,400 @@
+body {
+  background-color: #f0f2f5;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 0;
+  min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sideBar {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: #fff;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sideBar > div:first-child {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sideBar h1 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff, #e0e0e0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#addBook {
+  background: linear-gradient(135deg, #ffd89b 0%, #c7e9fb 100%);
+  border: none;
+  height: 50px;
+  border-radius: 25px;
+  color: #1e3c72;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+#addBook:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #ffe6b3 0%, #d4f1ff 100%);
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 25px 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#form.hidden {
+  display: none;
+}
+
+#form div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#form label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #e0e0e0;
+  letter-spacing: 0.5px;
+}
+
+#form input {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+#form input:focus {
+  outline: none;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(255, 216, 155, 0.5);
+  transform: translateY(-1px);
+}
+
+#form input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #ffd89b;
+}
+
+#form div:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+#submit {
+  background: linear-gradient(135deg, #ffd89b 0%, #c7e9fb 100%);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e3c72;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+#submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================ */
+/* BOOK CONTAINER STYLING */
+/* ============================================ */
+
+#bookContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 40px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+/* Book Card Styling */
+.bookCard {
+  background: white;
+  border-radius: 20px;
+  padding: 0;
+  overflow: hidden;
+  height: 300px;
+  width: 250px;
+  border: 2px solid rgba(0, 0, 0, 0.88);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.bookCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Book Cover Effect */
+.bookCard::before {
+  content: "📚";
+  position: absolute;
+  top: -0px;
+  right: -0px;
+  font-size: 80px;
+  opacity: 0.2;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.bookCard:hover::before {
+  opacity: 0.2;
+  transform: rotate(5deg) scale(1.1);
+}
+
+/* Book Content */
+.bookCard > div {
+  padding: 25px;
+}
+
+.bookCard h2 {
+  font-size: 1.6rem;
+  margin: 0 0 10px 0;
+  color: #1e3c72;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  border-left: 4px solid #ffd89b;
+  padding-left: 15px;
+}
+
+.bookCard p {
+  margin: 12px 0;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bookCard p:first-of-type {
+  color: #666;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* Icons for book info */
+.bookCard p:nth-child(2)::before {
+  content: "✍️";
+  font-size: 1.1rem;
+}
+
+.bookCard p:nth-child(3)::before {
+  content: "📄";
+  font-size: 1.1rem;
+}
+
+/* Book Stats Bar */
+.book-stats {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 12px 25px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Buttons Container */
+.book-actions {
+  padding: 20px 25px 25px;
+  display: flex;
+  gap: 12px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}
+
+.bookCard button {
+  flex: 1;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Read Status Button */
+.bookCard .read {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  box-shadow: 0 2px 5px rgba(17, 153, 142, 0.3);
+}
+
+.bookCard .read:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+}
+
+.bookCard .read:active {
+  transform: scale(0.98);
+}
+
+/* Remove Button */
+.bookCard .remove {
+  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+  color: white;
+  box-shadow: 0 2px 5px rgba(235, 51, 73, 0.3);
+}
+
+.bookCard .remove:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(235, 51, 73, 0.4);
+}
+
+.bookCard .remove:active {
+  transform: scale(0.98);
+}
+
+/* Read Status Badge */
+.read-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.read-status.read {
+  background: #d4edda;
+  color: #155724;
+}
+
+.read-status.unread {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Empty State */
+#bookContainer:empty::before {
+  content: "📖 No books in your library yet. Click 'Add Book' to get started! 📖";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 2.2rem;
+  color: #666;
+  padding: 60px;
+  grid-column: 1 / -1;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for new books */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bookCard {
+  animation: slideIn 0.4s ease-out;
+}
+
+/* Scrollbar for book container */
+#bookContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+#bookContainer::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+
+#bookContainer::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+
+  .sideBar {
+    position: relative;
+    height: auto;
+    padding: 20px;
+  }
+
+  #bookContainer {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .bookCard h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Loading Skeleton (optional) */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
