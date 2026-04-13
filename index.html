@@ -12,6 +12,7 @@
     <div class="sideBar">
       <div>
         <h1>My Library</h1>
+        <h2>📚 Read <span id="readCount">0</span></h2>
         <button id="addBook">Add Book</button>
       </div>
       <form id="form" class="hidden" action="#">
@@ -21,6 +22,10 @@
             type="text"
             id="title"
             name="title"
+            required
+            minlength="3"
+            maxlength="50"
+            pattern=".*\S+.*"
             placeholder="Enter the title of the book"
           />
         </div>
@@ -30,6 +35,10 @@
             type="text"
             id="author"
             name="author"
+            required
+            minlength="3"
+            maxlength="50"
+            pattern=".*\S+.*"
             placeholder="Enter the author of the book"
           />
         </div>
@@ -39,6 +48,9 @@
             type="number"
             id="pages"
             name="pages"
+            required
+            min="1"
+            max="1000"
             placeholder="Enter the number of pages"
           />
         </div>
