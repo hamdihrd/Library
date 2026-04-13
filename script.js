@@ -58,10 +58,10 @@ function displayBooks() {
 
 addBookToLibrary("Book 1", "Author 1", 100, true);
 addBookToLibrary("Book 2", "Author 2", 200, false);
-// addBookToLibrary("Book 3", "Author 3", 300, true);
-// addBookToLibrary("Book 4", "Author 4", 400, true);
-// addBookToLibrary("Book 5", "Author 5", 500, false);
-// addBookToLibrary("Book 6", "Author 6", 600, true);
+addBookToLibrary("Book 3", "Author 3", 300, true);
+addBookToLibrary("Book 4", "Author 4", 400, true);
+addBookToLibrary("Book 5", "Author 5", 500, false);
+addBookToLibrary("Book 6", "Author 6", 600, true);
 
 displayBooks();
 
@@ -82,14 +82,15 @@ function updateReadCount() {
 }
 
 container.addEventListener("click", (e) => {
-  if (e.target.classList.contains("read")) {
-    const bookCard = e.target.closest(".bookCard");
-    if (bookCard) {
-      const bookId = bookCard.dataset.id;
-      const book = myLibrary.find((book) => book.id === bookId);
-      book.read = !book.read;
-      displayBooks();
-    }
+  if (
+    e.target.classList.contains("read") &&
+    e.target.parentElement.classList.contains("book-actions")
+  ) {
+    // toggle read
+    const bookId = e.target.parentElement.parentElement.dataset.id;
+    const book = myLibrary.find((book) => book.id === bookId);
+    book.read = !book.read;
+    displayBooks();
   } else if (e.target.classList.contains("remove")) {
     if (confirm("Supprimer ce livre ?")) {
       // suppression...

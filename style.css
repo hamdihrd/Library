@@ -282,18 +282,18 @@ body {
 }
 
 /* Read Status Button */
-.bookCard .read {
+.book-actions > .read {
   background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
   color: white;
   box-shadow: 0 2px 5px rgba(17, 153, 142, 0.3);
 }
 
-.bookCard .read:hover {
+.book-actions > .read:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
 }
 
-.bookCard .read:active {
+.book-actions > .read:active {
   transform: scale(0.98);
 }
 
