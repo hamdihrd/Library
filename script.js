@@ -6,14 +6,43 @@ const container = document.querySelector("#bookContainer");
 const form0 = document.querySelector("#form");
 const sideBar = document.querySelector(".sideBar");
 
-function Book(title, author, pages, read) {
+class Book {
+  #id;
+  #title;
+  #author;
+  #pages;
+  #read;
+
   // the constructor...
 
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.id = crypto.randomUUID();
+  constructor(title, author, pages, read) {
+    this.#title = title;
+    this.#author = author;
+    this.#pages = pages;
+    this.#read = read;
+    this.#id = crypto.randomUUID();
+  }
+
+  get id() {
+    return this.#id;
+  }
+
+  get title() {
+    return this.#title;
+  }
+  get author() {
+    return this.#author;
+  }
+  get pages() {
+    return this.#pages;
+  }
+  get read() {
+    return this.#read;
+  }
+
+  set read(value) {
+    this.#read = value;
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {

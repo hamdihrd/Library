@@ -161,7 +161,7 @@ body {
 
 #bookContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
   padding: 40px;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -275,7 +275,7 @@ body {
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 10px 16px;
+  padding: 5px 10px;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
